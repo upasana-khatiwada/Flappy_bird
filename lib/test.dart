@@ -37,25 +37,11 @@ class _HomePageState extends State<HomePage> {
       //at a certain time it goes to maximum height and comes down due to gravity
 
       time += 0.04;
-      height = -4.9 * time * time + 2.7 * time; //v=2.8
+      height = -4.9 * time * time + 2.8 * time; //v=2.8
       setState(() {
         birdYAxis = initialHeight - height;
-        // barrierXone -= 0.05;
-        // barrierXtwo -= 0.05;
-      });
-      setState(() {
-        if (barrierXone < -2) {
-          barrierXone += 3.5;
-        } else {
-          barrierXone -= 0.05;
-        }
-      });
-      setState(() {
-        if (barrierXtwo < -2) {
-          barrierXtwo += 3.5;
-        } else {
-          barrierXtwo -= 0.05;
-        }
+        barrierXone -= 0.05;
+        barrierXtwo -= 0.05;
       });
       //landing bird on ground
       if (birdYAxis > 1) {
@@ -68,15 +54,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      //ontap we are giving this condition because we want to start timer only once instead of having
-      //timer started on every jump
       onTap: () {
-        if (gameHasStarted == true) {
-          jump();
-        } else {
-          startGame();
-        }
-      },
+                    if (gameHasStarted == true) {
+                      jump();
+                    } else {
+                      startGame();
+                    }
+                  },
       child: Scaffold(
         body: Column(
           children: [
@@ -84,6 +68,7 @@ class _HomePageState extends State<HomePage> {
               flex: 2,
               child: Stack(
                 children: [
+                  
                   AnimatedContainer(
                     alignment: Alignment(0, birdYAxis),
                     duration: const Duration(milliseconds: 0),
@@ -107,14 +92,14 @@ class _HomePageState extends State<HomePage> {
                   AnimatedContainer(
                     alignment: Alignment(barrierXone, 1.1),
                     duration: const Duration(milliseconds: 0),
-                    child: MyBarrier(
+                    child:  MyBarrier(
                       size: MediaQuery.of(context).size.height * 0.28,
                     ),
                   ),
                   AnimatedContainer(
                     alignment: Alignment(barrierXone, -1.1),
                     duration: const Duration(milliseconds: 0),
-                    child: MyBarrier(
+                    child:  MyBarrier(
                       size: MediaQuery.of(context).size.height * 0.24,
                     ),
                   ),
@@ -128,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                   AnimatedContainer(
                     alignment: Alignment(barrierXtwo, -1.1),
                     duration: const Duration(milliseconds: 0),
-                    child: MyBarrier(
+                    child:  MyBarrier(
                       size: MediaQuery.of(context).size.height * 0.3,
                     ),
                   ),
